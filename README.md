@@ -1,5 +1,7 @@
 # Google Software Product Sprint
 
+Hello I'm Hua Lun. 
+
 This repo contains the projects you'll work on throughout SPS.
 
 To get started:
