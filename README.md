@@ -1,8 +1,6 @@
 # Google Software Product Sprint
 
-Hello I'm Hua Lun. 
-
-This repo contains the projects you'll work on throughout SPS.
+This repo contains Hua Lun's portfolio and SPS projects.
 
 To get started:
 
