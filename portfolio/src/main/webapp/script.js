@@ -29,13 +29,13 @@ function addRandomFact() {
 }
 
 /**
- * Fetches a random quote from the server and adds it to the DOM.
+ * Fetches a random message from the server and adds it to the DOM.
  */
-function getRandomQuote() {
-  console.log('Fetching a random quote.');
+function getRandomMessage() {
+  console.log('Fetching a random message.');
 
   // The fetch() function returns a Promise because the request is asynchronous.
-  const responsePromise = fetch('/random-quote');
+  const responsePromise = fetch('/data');
 
   // When the request is complete, pass the response into handleResponse().
   responsePromise.then(handleResponse);
@@ -43,7 +43,7 @@ function getRandomQuote() {
 
 /**
  * Handles response by converting it to text and passing the result to
- * addQuoteToDom().
+ * addMessageToDom().
  */
 function handleResponse(response) {
   console.log('Handling the response.');
@@ -53,16 +53,16 @@ function handleResponse(response) {
   const textPromise = response.text();
 
   // When the response is converted to text, pass the result into the
-  // addQuoteToDom() function.
-  textPromise.then(addQuoteToDom);
+  // addMessageToDom() function.
+  textPromise.then(addMessageToDom);
 }
 
-/** Adds a random quote to the DOM. */
-function addQuoteToDom(quote) {
-  console.log('Adding quote to dom: ' + quote);
+/** Adds a random message to the DOM. */
+function addMessageToDom(message) {
+  console.log('Adding message to dom: ' + message);
 
-  const quoteContainer = document.getElementById('quote-container');
-  quoteContainer.innerText = quote;
+  const messageContainer = document.getElementById('message-container');
+  messageContainer.innerText = message;
 }
 
 /**
@@ -71,9 +71,9 @@ function addQuoteToDom(quote) {
  * combines all of the above code into a single Promise chain. You can use
  * whichever syntax makes the most sense to you.
  */
-function getRandomQuoteUsingArrowFunctions() {
-  fetch('/random-quote').then(response => response.text()).then((quote) => {
-    document.getElementById('quote-container').innerText = quote;
+function getRandomMessageUsingArrowFunctions() {
+  fetch('/data').then(response => response.text()).then((message) => {
+    document.getElementById('message-container').innerText = message;
   });
 }
 
@@ -82,8 +82,8 @@ function getRandomQuoteUsingArrowFunctions() {
  * allows you to use the return values directly instead of going through
  * Promises.
  */
-async function getRandomQuoteUsingAsyncAwait() {
-  const response = await fetch('/random-quote');
-  const quote = await response.text();
-  document.getElementById('quote-container').innerText = quote;
+async function getRandomMessageUsingAsyncAwait() {
+  const response = await fetch('/data');
+  const message = await response.text();
+  document.getElementById('message-container').innerText = message;
 }
