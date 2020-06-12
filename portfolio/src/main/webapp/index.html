@@ -35,15 +35,20 @@
       <h2>Click here to get a random fact about me:</h2>
       <button onclick="addRandomFact()">HL Fact!</button>
       <div id="fact-container"></div>
-      
-      <h2>You know if you know</h2>
-      <button onclick="getMessage()">:)</button>
-      <div id="message-container"></div>
-      
+            
       <h2>Click on the following to know more about me!</h2>
       <p><a href="projects.html">Projects</a></p>
       <p><a href="gallery.html">Gallery</a></p>
       <p><a href="blogpost.html">Blog Posts</a></p>
+
+      <form action="/data" method="POST">
+
+        <p>Leave a comment:</p>
+        <input type="text" name="user-comment">
+        <br/><br/>
+
+        <input type="submit" />
+      </form>
 
       <hr>
 
