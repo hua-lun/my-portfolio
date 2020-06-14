@@ -15,6 +15,10 @@
 /**
  * Adds a random fact to the page.
  */
+
+google.charts.load('current', {'packages':['corechart']});
+google.charts.setOnLoadCallback(drawChart);
+
 function addRandomFact() {
   const facts =
       ['I performed in Chingay 2011.', 'My favourite game is between Tetris and Pokemon.', 
@@ -115,4 +119,30 @@ function createParaElement(text) {
   const pElement = document.createElement('p');
   pElement.innerText = text;
   return pElement;
+}
+
+/** Creates a chart and adds it to the page. */
+function drawChart() {
+  const data = new google.visualization.DataTable();
+  data.addColumn('string', 'Schedule');
+  data.addColumn('number', 'Hour');
+        data.addRows([
+          ['Work', 8],
+          ['Eat',      3],
+          ['YouTube Time', 1],
+          ['Netflix', 2],
+          ['SPS', 1],
+          ['Sleep', 9]
+        ]);
+
+  const options = {
+    'title': 'My Daily Routine',
+    'width':500,
+    'height':400,
+    backgroundColor: '#73C6B6'
+  };
+
+  const chart = new google.visualization.PieChart(
+      document.getElementById('chart-container'));
+  chart.draw(data, options);
 }
