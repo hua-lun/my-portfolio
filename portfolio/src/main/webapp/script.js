@@ -17,7 +17,7 @@
  */
 
 google.charts.load('current', {'packages':['corechart']});
-google.charts.setOnLoadCallback(drawChart);
+google.charts.setOnLoadCallback(drawPieChart);
 
 function addRandomFact() {
   const facts =
@@ -122,7 +122,7 @@ function createParaElement(text) {
 }
 
 /** Creates a chart and adds it to the page. */
-function drawChart() {
+function drawPieChart() {
   const data = new google.visualization.DataTable();
   data.addColumn('string', 'Schedule');
   data.addColumn('number', 'Hour');
@@ -143,6 +143,6 @@ function drawChart() {
   };
 
   const chart = new google.visualization.PieChart(
-      document.getElementById('chart-container'));
+      document.getElementById('chart-daily'));
   chart.draw(data, options);
 }
