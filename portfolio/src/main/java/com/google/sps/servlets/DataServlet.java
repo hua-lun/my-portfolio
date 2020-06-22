@@ -18,6 +18,7 @@ import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.datastore.Entity;
 import com.google.gson.Gson;
+import customclass.Comment;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
@@ -52,8 +53,10 @@ public class DataServlet extends HttpServlet {
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
     
+    Comment comment = new Comment(comments.get(0));
     // Convert the message to JSON
-    String json = convertToJson(comments.get(0));
+    Gson gson = new Gson();
+    String json = gson.toJson(comment);
 
     response.setContentType("application/json;");
     response.getWriter().println(json);
