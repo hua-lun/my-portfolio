@@ -7,6 +7,12 @@
     <script src="script.js"></script>
   </head>
   <body>
+    <div class="sidenav">
+      <a href="index.html">Home</a>
+      <a href="projects.html">Projects / Internships</a>
+      <a href="blogpost.html">Blogpost</a>
+      <a href="gallery.html">Gallery</a>
+    </div>
     <div id="content">
       <h1>Hua Lun's Portfolio</h1>
       <img src="images/hl-dp1.png" "width:100%;height:100%;">
@@ -35,15 +41,20 @@
       <h2>Click here to get a random fact about me:</h2>
       <button onclick="addRandomFact()">HL Fact!</button>
       <div id="fact-container"></div>
-      
-      <h2>You know if you know</h2>
-      <button onclick="getMessage()">:)</button>
-      <div id="message-container"></div>
-      
+            
       <h2>Click on the following to know more about me!</h2>
       <p><a href="projects.html">Projects</a></p>
       <p><a href="gallery.html">Gallery</a></p>
       <p><a href="blogpost.html">Blog Posts</a></p>
+
+      <form action="/data" method="POST">
+
+        <h3>Leave a comment:</h3>
+        <input type="text" name="user-comment">
+        <br/><br/>
+
+        <input type="submit" />
+      </form>
 
       <hr>
 

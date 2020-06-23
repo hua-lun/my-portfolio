@@ -14,9 +14,15 @@
 
 package com.google.sps.servlets;
 
+import com.google.appengine.api.datastore.DatastoreService;
+import com.google.appengine.api.datastore.DatastoreServiceFactory;
+import com.google.appengine.api.datastore.Entity;
 import com.google.gson.Gson;
+import customclass.Comment;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
+import java.text.SimpleDateFormat;
 import java.util.List;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -28,38 +34,63 @@ import javax.servlet.http.HttpServletResponse;
 public class DataServlet extends HttpServlet {
 
   private List<String> messages;
+  private List<String> comments;
 
   /**
   * Converts a String instance to a Json string.
   */
   public String convertToJson(String str) {
+    
     String json = "{";
-    json += "\"msg\": ";
+
+    json += "\"com\": ";
     json += "\"" + str + "\"";
-    json += "}";
+    json += "}";        
+
     return json;
   }
 
   @Override
-  public void init() {
-      messages = new ArrayList<>();
-      messages.add("no pomegranates");
-      messages.add("you could stop at five or six stores or just one");
-      messages.add("stop it, get some help");
-      messages.add("beep beep I'm a sheep");
-      messages.add("why are you running!?");
-      messages.add("wait... what?");
-  }
-
-  @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    String message = messages.get((int) (Math.random() * messages.size()));
-
+    
+    Comment comment = new Comment(comments.get(0));
     // Convert the message to JSON
-    String json = convertToJson(message);
+    Gson gson = new Gson();
+    String json = gson.toJson(comment);
 
     response.setContentType("application/json;");
     response.getWriter().println(json);
 
+  }
+
+  @Override
+  public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+
+    // Get the input from the form.
+    String userComment = getUserComment(request);
+
+    // Add input into list
+    comments = new ArrayList<>();  
+    comments.add(userComment);
+
+    String timeStamp = new SimpleDateFormat("dd.MM.YYYY HH.mm.ss").format(new Date());
+
+    Entity commentEntity = new Entity("Comments");
+    commentEntity.setProperty("comment", userComment);
+    commentEntity.setProperty("timestamp", timeStamp);
+
+    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+    datastore.put(commentEntity);
+
+    // Redirect back to the HTML page.
+    response.sendRedirect("/index.html");
+  }
+
+  /** Returns the comment entered by the user. */
+  private String getUserComment(HttpServletRequest request) {
+    // Get the input from the form.
+    String userCommentString = request.getParameter("user-comment");
+
+    return userCommentString;
   }
 }
