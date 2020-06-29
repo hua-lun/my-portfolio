@@ -29,10 +29,12 @@ public final class TimeRange {
   /**
    * A comparator for sorting ranges by their start time in ascending order.
    */
-  public static final Comparator<TimeRange> ORDER_BY_START = new Comparator<TimeRange>() {
+  public static final Comparator<Event> ORDER_BY_START = new Comparator<Event>() {
     @Override
-    public int compare(TimeRange a, TimeRange b) {
-      return Long.compare(a.start, b.start);
+    public int compare(Event a, Event b) {
+      TimeRange t1 = a.getWhen();
+      TimeRange t2 = b.getWhen();
+      return Long.compare(t1.start, t2.start);
     }
   };
 
