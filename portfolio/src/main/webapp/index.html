@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>My Portfolio</title>
     <link rel="stylesheet" href="style.css">
+    <script src="https://www.gstatic.com/charts/loader.js"></script>
     <script src="script.js"></script>
   </head>
   <body>
@@ -41,11 +42,9 @@
       <h2>Click here to get a random fact about me:</h2>
       <button onclick="addRandomFact()">HL Fact!</button>
       <div id="fact-container"></div>
-            
-      <h2>Click on the following to know more about me!</h2>
-      <p><a href="projects.html">Projects</a></p>
-      <p><a href="gallery.html">Gallery</a></p>
-      <p><a href="blogpost.html">Blog Posts</a></p>
+
+      <h2>What I do in a day</h2>      
+      <div id="chart-container"></div>
 
       <form action="/data" method="POST">
 
