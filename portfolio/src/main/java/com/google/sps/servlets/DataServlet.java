@@ -36,20 +36,6 @@ public class DataServlet extends HttpServlet {
   private List<String> messages;
   private List<String> comments;
 
-  /**
-  * Converts a String instance to a Json string.
-  */
-  public String convertToJson(String str) {
-    
-    String json = "{";
-
-    json += "\"com\": ";
-    json += "\"" + str + "\"";
-    json += "}";        
-
-    return json;
-  }
-
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
     
